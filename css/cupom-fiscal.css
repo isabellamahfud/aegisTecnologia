@@ -1,0 +1,230 @@
+/* CUPOM FISCAL */
+
+html,
+body{
+    background: #050816;
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family: 'Inter', sans-serif;
+
+    color: white;
+}
+
+.cupom-fiscal{
+    padding: 140px 8%;
+
+    min-height: 100vh;
+}
+
+.cupom-container{
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+.voltar{
+    display: inline-block;
+
+    margin-bottom: 40px;
+
+    color: #06b6d4;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.voltar:hover{
+    color: #7c3aed;
+}
+
+.cupom-fiscal span{
+    color: #06b6d4;
+
+    letter-spacing: 2px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.cupom-fiscal h1{
+    font-size: 64px;
+
+    line-height: 1.1;
+
+    margin: 20px 0 40px;
+
+    background: linear-gradient(90deg,#7c3aed,#06b6d4);
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.cupom-fiscal p{
+    color: #a1a1aa;
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    margin-bottom: 30px;
+}
+
+/* GRID */
+
+.funcionalidades{
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 20px;
+
+    margin: 60px 0;
+}
+
+.func-item{
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    color: #e4e4e7;
+
+    transition: 0.3s;
+
+    backdrop-filter: blur(10px);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* glow */
+
+.func-item::before{
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    background: rgba(6,182,212,0.12);
+
+    border-radius: 50%;
+
+    top: -70px;
+    right: -70px;
+
+    filter: blur(45px);
+}
+
+.func-item:hover{
+    transform: translateY(-8px);
+
+    border-color: #06b6d4;
+}
+
+/* CTA */
+
+.cta-box{
+    margin-top: 70px;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.cta-box::before{
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    background: rgba(124,58,237,0.18);
+
+    border-radius: 50%;
+
+    top: -100px;
+    right: -100px;
+
+    filter: blur(60px);
+}
+
+.cta-box h3{
+    font-size: 32px;
+
+    margin-bottom: 20px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.cta-box p{
+    position: relative;
+
+    z-index: 2;
+}
+
+.cta-box a{
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 16px 28px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(90deg,#7c3aed,#06b6d4);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.cta-box a:hover{
+    transform: translateY(-5px);
+}
+
+/* RESPONSIVO */
+
+@media(max-width: 900px){
+
+    .cupom-fiscal h1{
+        font-size: 42px;
+    }
+
+    .cupom-fiscal p{
+        font-size: 16px;
+    }
+
+}

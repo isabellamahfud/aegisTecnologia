@@ -1,0 +1,133 @@
+/* RESET */
+
+*{
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: Arial, sans-serif;
+}
+
+/* BODY */
+
+body{
+    min-height: 100vh;
+
+    background: #050816;
+
+    color: white;
+}
+
+/* SECTION */
+
+.downloads{
+    padding: 120px 8%;
+}
+
+/* HEADER */
+
+.downloads-header{
+    text-align: center;
+
+    margin-bottom: 70px;
+}
+
+.downloads-header h1{
+    font-size: 52px;
+
+    margin-bottom: 20px;
+
+    background: linear-gradient(90deg,#7c3aed,#06b6d4);
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.downloads-header p{
+    color: #a1a1aa;
+
+    font-size: 18px;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    line-height: 1.7;
+}
+
+/* GRID */
+
+.downloads-container{
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+
+    gap: 30px;
+}
+
+/* CARD */
+
+.download-card{
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s;
+}
+
+.download-card:hover{
+    transform: translateY(-8px);
+
+    border-color: rgba(124,58,237,0.5);
+}
+
+/* TITULO */
+
+.download-card h2{
+    margin-bottom: 15px;
+
+    font-size: 26px;
+}
+
+/* TEXTO */
+
+.download-card p{
+    color: #a1a1aa;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+/* BOTÃO */
+
+.download-card a{
+    display: inline-block;
+
+    text-decoration: none;
+
+    padding: 12px 22px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(90deg,#7c3aed,#06b6d4);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.download-card a:hover{
+    transform: scale(1.05);
+}
