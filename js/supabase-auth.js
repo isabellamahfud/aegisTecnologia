@@ -1,13 +1,19 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.esm.js';
 
-// Substitua estes valores pelos dados do seu projeto Supabase.
-const SUPABASE_URL = 'https://ahaefzkrjudhvhbltphl.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_VXJrhRVQa3Qk0IDc9dfh1g_DXHRu2Gt';
+// Carrega configurações do arquivo config.js
+// Se CONFIG não estiver disponível, usa valores padrão
+const SUPABASE_URL = typeof CONFIG !== 'undefined' ? CONFIG.supabase.url : 'https://ahaefzkrjudhvhbltphl.supabase.co';
+const SUPABASE_ANON_KEY = typeof CONFIG !== 'undefined' ? CONFIG.supabase.anonKey : 'sb_publishable_VXJrhRVQa3Qk0IDc9dfh1g_DXHRu2Gt';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+window.supabase = supabase;
+
 const page = document.body.dataset.page || 'index';
 const messageEl = document.getElementById('form-message');
-const redirectTo = window.location.pathname.includes('/pages/') ? '../index.html' : 'index.html';
+const isPagesFolder = window.location.pathname.includes('/pages/');
+const redirectTo = isPagesFolder ? '../index.html' : 'index.html';
+const loginPage = isPagesFolder ? 'login.html' : 'pages/login.html';
+const signupPage = isPagesFolder ? 'cadastro.html' : 'pages/cadastro.html';
 
 function setMessage(message, type = 'info') {
     if (!messageEl) return;
@@ -73,12 +79,15 @@ async function handleSignup(event) {
         return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-    }, {
-        data: { full_name: name }
-    });
+    const { data, error } = await supabase.auth.signUp(
+        {
+            email,
+            password,
+        },
+        {
+            data: { full_name: name },
+        }
+    );
 
     if (error) {
         setMessage(error.message, 'error');
@@ -86,9 +95,21 @@ async function handleSignup(event) {
     }
 
     if (data?.user) {
+        const { error: profileError } = await supabase.from('profiles').insert([
+            {
+                id: data.user.id,
+                full_name: name,
+                email: data.user.email,
+            },
+        ]);
+
+        if (profileError) {
+            console.error('Erro ao salvar perfil:', profileError.message);
+        }
+
         setMessage('Conta criada com sucesso! Verifique seu e-mail ou faça login.', 'success');
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = loginPage;
         }, 1800);
         return;
     }
@@ -106,11 +127,27 @@ async function handleLogout(event) {
     window.location.href = redirectTo;
 }
 
-async function updateAuthBar() {
-    const authBar = document.getElementById('auth-bar');
-    const authButtons = document.querySelector('.auth-buttons');
+async function ensureAuthBar() {
+    let authBar = document.getElementById('auth-bar');
+    if (authBar) return authBar;
 
-    if (!authBar) return;
+    authBar = document.createElement('div');
+    authBar.id = 'auth-bar';
+    authBar.className = 'auth-bar';
+
+    const insertBefore = document.querySelector('header') || document.body.firstChild;
+    if (insertBefore) {
+        document.body.insertBefore(authBar, insertBefore);
+    } else {
+        document.body.appendChild(authBar);
+    }
+
+    return authBar;
+}
+
+async function updateAuthBar() {
+    const authBar = await ensureAuthBar();
+    const authButtons = document.querySelector('.auth-buttons');
 
     const { data } = await supabase.auth.getSession();
     const user = data?.session?.user;
@@ -136,6 +173,15 @@ async function updateAuthBar() {
     document.getElementById('logout-button')?.addEventListener('click', handleLogout);
 }
 
+async function requireAuth() {
+    const { data } = await supabase.auth.getSession();
+    if (!data?.session) {
+        window.location.href = loginPage;
+        return false;
+    }
+    return true;
+}
+
 async function onLoad() {
     if (page === 'login') {
         document.getElementById('login-form')?.addEventListener('submit', handleLogin);
@@ -154,6 +200,12 @@ async function onLoad() {
         if (data?.session) {
             window.location.href = redirectTo;
         }
+        return;
+    }
+
+    if (isPagesFolder) {
+        await requireAuth();
+        await updateAuthBar();
         return;
     }
 

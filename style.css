@@ -34,6 +34,8 @@ header{
     backdrop-filter: blur(15px);
 
     z-index: 999;
+    justify-items: center;
+    justify-content: center;
 }
 /* LOGO FIXADA NA ESQUERDA */
 
