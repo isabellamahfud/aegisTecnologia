@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body data-page="signup">
 
     <section class="container">
 
@@ -22,15 +22,17 @@
 
             <p>Preencha os dados para se cadastrar</p>
 
-            <form>
+            <div class="message" id="form-message" aria-live="polite"></div>
 
-                <input type="text" placeholder="Nome completo" required>
+            <form id="signup-form">
 
-                <input type="email" placeholder="E-mail" required>
+                <input id="signup-name" type="text" placeholder="Nome completo" required>
 
-                <input type="password" placeholder="Senha" required>
+                <input id="signup-email" type="email" placeholder="E-mail" required>
 
-                <input type="password" placeholder="Confirmar senha" required>
+                <input id="signup-password" type="password" placeholder="Senha" required>
+
+                <input id="signup-password-confirm" type="password" placeholder="Confirmar senha" required>
 
                 <button type="submit">
                     Cadastrar
@@ -47,6 +49,7 @@
 
     </section>
 
+    <script type="module" src="../js/supabase-auth.js"></script>
 </body>
 
 </html>

@@ -626,6 +626,39 @@ footer{
     box-shadow: 0 10px 20px rgba(124,58,237,0.3);
 }
 
+.hidden{
+    display: none !important;
+}
+
+.auth-bar{
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.auth-bar .user-badge{
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+}
+
+.auth-bar button{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-bar button:hover{
+    background: rgba(255,255,255,0.14);
+}
+
 .hero{
     min-height: 100vh;
 

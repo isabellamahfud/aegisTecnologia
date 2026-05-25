@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body data-page="login">
 
     <section class="container">
 
@@ -23,11 +23,13 @@
 
             <p>Acesse sua conta</p>
 
-            <form>
+            <div class="message" id="form-message" aria-live="polite"></div>
 
-                <input type="email" placeholder="E-mail" required>
+            <form id="login-form">
 
-                <input type="password" placeholder="Senha" required>
+                <input id="login-email" type="email" placeholder="E-mail" required>
+
+                <input id="login-password" type="password" placeholder="Senha" required>
 
                 <button type="submit">
                     Login
@@ -44,6 +46,7 @@
 
     </section>
 
+    <script type="module" src="../js/supabase-auth.js"></script>
 </body>
 
 </html>
