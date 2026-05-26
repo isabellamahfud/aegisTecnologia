@@ -43,7 +43,7 @@ if (signupForm) {
         await updateProfile(userCredential.user, { displayName: name });
       }
       showMessage(msgEl, 'Cadastro realizado com sucesso. Redirecionando...', true);
-      setTimeout(() => { window.location.href = './index.html'; }, 1200);
+      setTimeout(() => { window.location.href = '/index.html'; }, 1200);
     } catch (err) {
       showMessage(msgEl, err.message || 'Erro no cadastro', false);
     }
@@ -62,7 +62,7 @@ if (loginForm) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       showMessage(msgEl, 'Login efetuado. Redirecionando...', true);
-      setTimeout(() => { window.location.href = './index.html'; }, 800);
+      setTimeout(() => { window.location.href = '/index.html'; }, 800);
     } catch (err) {
       showMessage(msgEl, err.message || 'Erro no login', false);
     }
