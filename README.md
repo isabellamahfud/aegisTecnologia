@@ -61,13 +61,17 @@ Monitores Desktop
 Baixe ou clone o projeto
 Abra a pasta do projeto
 Execute o arquivo index.html no navegador
+
+
 → Módulos e Serviços Apresentados
 Produção
 Ordem de Serviço
 Delivery
 Crediário
 Suporte
-→ Preview
+
+
+→ Preview :::
 <img width="1887" height="988" alt="image" src="https://github.com/user-attachments/assets/d365e72c-ce66-4201-abfa-8df0d71d8fda" />
 
 Site institucional com visual moderno, cores profissionais e foco em experiência do usuário.
