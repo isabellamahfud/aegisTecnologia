@@ -40,13 +40,21 @@ Aegis Tecnologia
 A missão da empresa é captar o que há de melhor em soluções tecnológicas e disponibilizá-las com profissionalismo, ética e comprometimento, visando sempre a concretização de parcerias duradouras e rentáveis, protegendo os investimentos dos clientes.
 
  Estrutura do Projeto
+ 
 /aegis-tecnologia
+
 │
+
 ├── index.html
+
 ├── style.css
+
 ├── /img
+
 ├── /pages
+
 └── README.md
+
 → Responsividade
 
 O site foi desenvolvido para funcionar corretamente em:
