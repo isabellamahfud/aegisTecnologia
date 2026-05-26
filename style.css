@@ -34,13 +34,18 @@ header{
     backdrop-filter: blur(15px);
 
     z-index: 999;
-    justify-items: center;
-    justify-content: center;
 }
-/* LOGO FIXADA NA ESQUERDA */
 
+/* LOGO FIXADA NA ESQUERDA */
 .logo{
     justify-self: start;
+}
+
+nav{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo h1{
@@ -160,9 +165,8 @@ nav{
 nav{
     display: flex;
     gap: 30px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
 }
 
 nav a{
@@ -633,7 +637,7 @@ footer{
 }
 
 .auth-bar{
-    margin-top: 16px;
+    margin-top: 0;
     display: flex;
     gap: 12px;
     align-items: center;

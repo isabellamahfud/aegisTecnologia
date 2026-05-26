@@ -1,0 +1,16 @@
+{
+  "name": "aegis-tecnologia-auth",
+  "version": "1.0.0",
+  "description": "Autenticação Firebase para Aegis Tecnologia (frontend estático)",
+  "scripts": {
+    "generate-config": "node scripts/generateConfig.js",
+    "start": "npx http-server -c-1 ./ -p 8080"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "firebase": "^12.13.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

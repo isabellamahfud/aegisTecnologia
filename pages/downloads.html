@@ -22,7 +22,7 @@
             <h1>Central de Downloads</h1>
 
             <p>
-                FaÃ§a o download dos sistemas, atualizaÃ§Ãµes e ferramentas da Aegis Tecnologia.
+                Faça o download dos sistemas, atualizações e ferramentas da Aegis Tecnologia.
             </p>
 
         </div>
@@ -33,10 +33,10 @@
 
             <div class="download-card">
 
-                <h2>AtualizaÃ§Ãµes</h2>
+                <h2>Atualizações</h2>
 
                 <a href=" https://drive.google.com/drive/folders/0B49nyG8mz0bSNXgtZDJhUjRabVE?resourcekey=0-6e4PSoSOaY-G3GaAODuhdw&usp=sharing">
-                   Acessar Drive de AtualizaÃ§Ãµes
+                   Acessar Drive de Atualizações
                 </a>
 
             </div>
@@ -58,11 +58,11 @@
 
             <div class="download-card">
 
-                <h2>DocumentaÃ§Ãµes</h2>
+                <h2>Documentações</h2>
 
             
                 <a href="https://www.aegistecnologia.com/suporte/downloads/documentacoes">
-                    Acessar Drive de DocumentaÃ§Ãµes
+                    Acessar Drive de Documentações
                 </a>
 
             </div>
@@ -71,11 +71,11 @@
 
             <div class="download-card">
 
-                <h2>Programas UtilitÃ¡rios</h2>
+                <h2>Programas Utilitários</h2>
 
 
                 <a href="https://www.aegistecnologia.com/suporte/downloads/programas-utilit%C3%A1rios">
-                    Acessar Drive de Programas UtilitÃ¡rios
+                    Acessar Drive de Programas Utilitários
                 </a>
 
             </div>
@@ -93,7 +93,18 @@
 
     </section>
 
-    <script type="module" src="../js/supabase-auth.js"></script>
+    <script type="module">
+        import { app } from '../js/firebase-config.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+
+        const auth = getAuth(app);
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                alert('Você precisa fazer login para acessar a página de downloads.');
+                window.location.href = '/pages/login.html';
+            }
+        });
+    </script>
 </body>
 
 </html>
