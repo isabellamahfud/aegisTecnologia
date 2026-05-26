@@ -783,6 +783,7 @@ max-width: 100%;
     }
     header.mobile-open .menu{ flex-direction: column; gap: 8px; }
     header.mobile-open .dropdown-content{ position: static; background: transparent; box-shadow: none; border-radius: 0; }
+    header.mobile-open .dropdown-content a{ color: white; }
     .hero{ padding: 120px 6%; }
     .form-box{ padding: 28px; margin: 0 16px; }
 }
