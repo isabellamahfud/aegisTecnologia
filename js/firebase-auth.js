@@ -3,6 +3,18 @@ import { app } from './firebase-config.js';
 
 const auth = getAuth(app);
 
+function createMessageElement(form) {
+  let msgEl = form.querySelector('#form-message');
+  if (!msgEl) {
+    msgEl = document.createElement('div');
+    msgEl.className = 'message';
+    msgEl.id = 'form-message';
+    msgEl.setAttribute('aria-live', 'polite');
+    form.insertBefore(msgEl, form.firstChild);
+  }
+  return msgEl;
+}
+
 function showMessage(el, msg, success = true) {
   if (!el) return;
   el.textContent = msg;
@@ -18,7 +30,7 @@ if (signupForm) {
     const email = document.getElementById('signup-email').value.trim();
     const password = document.getElementById('signup-password').value;
     const confirm = document.getElementById('signup-password-confirm').value;
-    const msgEl = document.getElementById('form-message');
+    const msgEl = createMessageElement(signupForm);
 
     if (password !== confirm) {
       showMessage(msgEl, 'As senhas não conferem.', false);
@@ -45,7 +57,7 @@ if (loginForm) {
     e.preventDefault();
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
-    const msgEl = document.getElementById('form-message');
+    const msgEl = createMessageElement(loginForm);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
