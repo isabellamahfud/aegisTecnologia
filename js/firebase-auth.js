@@ -21,6 +21,22 @@ function showMessage(el, msg, success = true) {
   el.style.color = success ? 'green' : 'red';
 }
 
+function redirectToIndex() {
+  try {
+    // Prefer origin-based absolute path when served over http(s)
+    if (window.location.origin && window.location.origin !== 'null') {
+      window.location.href = window.location.origin + '/index.html';
+      return;
+    }
+  } catch (e) {
+    // ignore
+  }
+  // Fallback: resolve by stripping /pages/... from current path
+  const href = window.location.href;
+  const base = href.replace(/\/pages\/.*$/, '');
+  window.location.href = (base.endsWith('/') ? base : base + '/') + 'index.html';
+}
+
 // Signup
 const signupForm = document.getElementById('signup-form');
 if (signupForm) {
@@ -43,7 +59,7 @@ if (signupForm) {
         await updateProfile(userCredential.user, { displayName: name });
       }
       showMessage(msgEl, 'Cadastro realizado com sucesso. Redirecionando...', true);
-      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+      setTimeout(() => { redirectToIndex(); }, 1200);
     } catch (err) {
       showMessage(msgEl, err.message || 'Erro no cadastro', false);
     }
@@ -62,7 +78,7 @@ if (loginForm) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       showMessage(msgEl, 'Login efetuado. Redirecionando...', true);
-      setTimeout(() => { window.location.href = 'index.html'; }, 800);
+      setTimeout(() => { redirectToIndex(); }, 800);
     } catch (err) {
       showMessage(msgEl, err.message || 'Erro no login', false);
     }
