@@ -5,6 +5,9 @@ import { app } from './firebase-config.js';
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Substitua pelo UID real do proprietário do site
+const OWNER_UIDS = ['OWNER_UID_1'];
+
 async function isDownloadsAuthorized(user) {
   if (!user) return false;
   try {
@@ -210,6 +213,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     authBar.innerHTML = `
       <span class="auth-user">${user.displayName || user.email}</span>
+      ${OWNER_UIDS.includes(user.uid) ? '<a href="pages/admin-requests.html" class="btn-admin">Admin</a>' : ''}
       <button id="logout-btn">Sair</button>
     `;
     const logoutBtn = document.getElementById('logout-btn');
