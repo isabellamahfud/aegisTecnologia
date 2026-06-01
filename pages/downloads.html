@@ -94,16 +94,12 @@
     </section>
 
     <script type="module">
-        import { app } from '../js/firebase-config.js';
-        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+        import { requireDownloadAccess } from '../js/firebase-auth.js';
 
-        const auth = getAuth(app);
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                alert('Você precisa fazer login para acessar a página de downloads.');
-                window.location.href = '/pages/login.html';
-            }
-        });
+        const proceed = await requireDownloadAccess();
+        if (!proceed) {
+            document.body.style.display = 'none';
+        }
     </script>
     <script src="../js/header.js"></script>
 </body>

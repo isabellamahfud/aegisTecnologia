@@ -1,7 +1,53 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
 import { app } from './firebase-config.js';
 
 const auth = getAuth(app);
+const db = getFirestore(app);
+
+async function isDownloadsAuthorized(user) {
+  if (!user) return false;
+  try {
+    const permissionDoc = await getDoc(doc(db, 'permissions', 'downloads'));
+    if (!permissionDoc.exists()) return false;
+    const data = permissionDoc.data();
+    return Array.isArray(data.allowedUids) && data.allowedUids.includes(user.uid);
+  } catch (err) {
+    console.error('Erro ao verificar permissão de downloads:', err);
+    return false;
+  }
+}
+
+async function getCurrentFirebaseUser() {
+  return new Promise((resolve) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      unsubscribe();
+      resolve(user);
+    });
+  });
+}
+
+export async function requireDownloadAccess() {
+  const user = await getCurrentFirebaseUser();
+  if (!user) {
+    alert('Você precisa fazer login para acessar a área de downloads.');
+    window.location.href = window.location.origin + '/pages/login.html';
+    return false;
+  }
+
+  const granted = await isDownloadsAuthorized(user);
+  if (!granted) {
+    const wantRequest = confirm('Acesso aos downloads restrito. Deseja solicitar permissão ao proprietário?');
+    if (wantRequest) {
+      window.location.href = window.location.origin + '/pages/contato.html';
+    } else {
+      window.location.href = window.location.origin + '/index.html';
+    }
+    return false;
+  }
+
+  return true;
+}
 
 function createMessageElement(form) {
   let msgEl = form.querySelector('#form-message');
