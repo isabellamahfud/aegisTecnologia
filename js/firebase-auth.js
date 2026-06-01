@@ -135,15 +135,30 @@ const authBar = document.getElementById('auth-bar');
 let currentUser = null;
 
 function protectDownloadsLink() {
-  const downloadsLink = document.querySelector('a[href="pages/downloads.html"]');
-  if (!downloadsLink) return;
+  const selector = 'a[href$="downloads.html"], a[href*="/downloads.html"]';
+  const links = Array.from(document.querySelectorAll(selector));
+  if (!links.length) return;
 
-  downloadsLink.addEventListener('click', (e) => {
-    if (!currentUser) {
+  links.forEach((link) => {
+    link.addEventListener('click', async (e) => {
+      // allow opening in new tab/window
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
-      alert('Você precisa fazer login para acessar a página de downloads.');
-      window.location.href = 'pages/login.html';
-    }
+      try {
+        const allowed = await requireDownloadAccess();
+        if (allowed) {
+          const href = link.getAttribute('href') || '';
+          if (/^(https?:)?\/\//.test(href) || href.startsWith('/')) {
+            const target = href.startsWith('http') ? href : window.location.origin + href;
+            window.location.href = target;
+          } else {
+            window.location.href = getSiteUrl(href);
+          }
+        }
+      } catch (err) {
+        console.error('Erro ao verificar acesso a downloads:', err);
+      }
+    });
   });
 }
 
