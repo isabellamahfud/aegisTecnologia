@@ -5,8 +5,11 @@ import { app } from './firebase-config.js';
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Substitua pelo UID real do proprietário do site
-const OWNER_UIDS = ['OWNER_UID_1'];
+// Substitua pelos UIDs reais dos proprietários do site
+const OWNER_UIDS = [
+  'nXA3dDI9J3emisozEjxwwEgVvw33',
+  'Cu9C6CYcd7SDigdhWlrIdVPqgWG3'
+];
 
 async function isDownloadsAuthorized(user) {
   if (!user) return false;

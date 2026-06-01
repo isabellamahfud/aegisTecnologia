@@ -36,8 +36,11 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Substitua pelo UID do proprietário(s)
-    const OWNERS = ['OWNER_UID_1'];
+    // Substitua pelos UIDs reais dos proprietários
+    const OWNERS = [
+      'OWNER_UID_1',
+      'OutroUIDdoProprietario'
+    ];
 
     function getSiteUrl(relativePath) {
       const path = window.location.pathname;
