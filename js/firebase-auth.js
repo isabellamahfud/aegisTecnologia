@@ -54,13 +54,16 @@ async function createPermissionRequest(user) {
 
 function getSiteBasePath() {
   const path = window.location.pathname;
-  const base = path.replace(/\/pages\/.*$/, '');
+  // Remove anything after /pages/ or anything after the last .html file
+  let base = path.replace(/\/pages\/.*$/, '').replace(/\/[^/]*\.html.*$/, '');
   return base === '' ? '/' : base;
 }
 
 function getSiteUrl(relativePath) {
   const base = getSiteBasePath().replace(/\/$/, '');
-  return window.location.origin + base + '/' + relativePath.replace(/^\//, '');
+  // Ensure relativePath doesn't start with /
+  const cleanPath = relativePath.replace(/^\//, '');
+  return window.location.origin + base + '/' + cleanPath;
 }
 
 async function getCurrentFirebaseUser() {
