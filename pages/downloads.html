@@ -97,15 +97,22 @@
 
     </section>
 
+    <script src="../js/header.js"></script>
+    
     <script type="module">
         import { requireDownloadAccess } from '../js/firebase-auth.js';
 
-        const proceed = await requireDownloadAccess();
-        if (!proceed) {
-            document.body.style.display = 'none';
-        }
+        (async () => {
+            try {
+                const proceed = await requireDownloadAccess();
+                if (!proceed) {
+                    document.body.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erro ao verificar acesso:', error);
+            }
+        })();
     </script>
-    <script src="../js/header.js"></script>
 </body>
 
 </html>
