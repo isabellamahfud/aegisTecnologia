@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
-import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
+import { getFirestore, doc, getDoc, collection, addDoc, query, where, getDocs, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
 import { app } from './firebase-config.js';
 
 const auth = getAuth(app);
@@ -14,6 +14,34 @@ async function isDownloadsAuthorized(user) {
     return Array.isArray(data.allowedUids) && data.allowedUids.includes(user.uid);
   } catch (err) {
     console.error('Erro ao verificar permissão de downloads:', err);
+    return false;
+  }
+}
+
+async function hasPendingRequest(user) {
+  try {
+    const q = query(collection(db, 'permission_requests'), where('uid', '==', user.uid), where('status', '==', 'pending'));
+    const snap = await getDocs(q);
+    return !snap.empty;
+  } catch (err) {
+    console.error('Erro ao checar solicitações pendentes:', err);
+    return false;
+  }
+}
+
+async function createPermissionRequest(user) {
+  try {
+    const req = {
+      uid: user.uid,
+      email: user.email || null,
+      displayName: user.displayName || null,
+      status: 'pending',
+      createdAt: serverTimestamp()
+    };
+    await addDoc(collection(db, 'permission_requests'), req);
+    return true;
+  } catch (err) {
+    console.error('Erro ao criar solicitação de permissão:', err);
     return false;
   }
 }
@@ -48,12 +76,24 @@ export async function requireDownloadAccess() {
 
   const granted = await isDownloadsAuthorized(user);
   if (!granted) {
-    const wantRequest = confirm('Acesso aos downloads restrito. Deseja solicitar permissão ao proprietário?');
-    if (wantRequest) {
-      window.location.href = getSiteUrl('pages/contato.html');
-    } else {
-      window.location.href = getSiteUrl('index.html');
+    // If not authorized, create a permission request in Firestore (if none pending)
+    try {
+      const pending = await hasPendingRequest(user);
+      if (!pending) {
+        const created = await createPermissionRequest(user);
+        if (created) {
+          alert('Acesso restrito. Uma solicitação de permissão foi enviada ao proprietário. Aguarde autorização.');
+        } else {
+          alert('Acesso restrito. Não foi possível enviar a solicitação. Tente novamente mais tarde.');
+        }
+      } else {
+        alert('Acesso restrito. Você já possui uma solicitação pendente. Aguarde autorização do proprietário.');
+      }
+    } catch (err) {
+      console.error('Erro ao criar/verificar solicitação de permissão:', err);
+      alert('Acesso restrito. Erro ao processar solicitação de permissão.');
     }
+    window.location.href = getSiteUrl('index.html');
     return false;
   }
 
