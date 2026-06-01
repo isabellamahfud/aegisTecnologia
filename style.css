@@ -113,11 +113,23 @@ nav{
 
     min-width: 270px;
 
+    max-height: 320px;
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+
     border-radius: 12px;
 
     padding: 10px 0;
 
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+    z-index: 9999;
 }
 
 .dropdown:hover .dropdown-content{
@@ -550,11 +562,21 @@ footer{
 
     min-width: 180px;
 
+    max-height: 320px;
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 
     border-radius: 10px;
 
-    overflow: hidden;
+    z-index: 9999;
 }
 
 .dropdown-content a{
@@ -782,7 +804,7 @@ max-width: 100%;
         z-index: 9999;
     }
     header.mobile-open .menu{ flex-direction: column; gap: 8px; }
-    header.mobile-open .dropdown-content{ position: static; background: transparent; box-shadow: none; border-radius: 0; }
+    header.mobile-open .dropdown-content{ position: static; background: transparent; box-shadow: none; border-radius: 0; max-height: 60vh; overflow-y: auto; }
     header.mobile-open .dropdown-content a{ color: white; }
     .hero{ padding: 120px 6%; }
     .form-box{ padding: 28px; margin: 0 16px; }

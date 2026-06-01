@@ -18,6 +18,17 @@ async function isDownloadsAuthorized(user) {
   }
 }
 
+function getSiteBasePath() {
+  const path = window.location.pathname;
+  const base = path.replace(/\/pages\/.*$/, '');
+  return base === '' ? '/' : base;
+}
+
+function getSiteUrl(relativePath) {
+  const base = getSiteBasePath().replace(/\/$/, '');
+  return window.location.origin + base + '/' + relativePath.replace(/^\//, '');
+}
+
 async function getCurrentFirebaseUser() {
   return new Promise((resolve) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -31,7 +42,7 @@ export async function requireDownloadAccess() {
   const user = await getCurrentFirebaseUser();
   if (!user) {
     alert('Você precisa fazer login para acessar a área de downloads.');
-    window.location.href = window.location.origin + '/pages/login.html';
+    window.location.href = getSiteUrl('pages/login.html');
     return false;
   }
 
@@ -39,9 +50,9 @@ export async function requireDownloadAccess() {
   if (!granted) {
     const wantRequest = confirm('Acesso aos downloads restrito. Deseja solicitar permissão ao proprietário?');
     if (wantRequest) {
-      window.location.href = window.location.origin + '/pages/contato.html';
+      window.location.href = getSiteUrl('pages/contato.html');
     } else {
-      window.location.href = window.location.origin + '/index.html';
+      window.location.href = getSiteUrl('index.html');
     }
     return false;
   }
@@ -68,19 +79,7 @@ function showMessage(el, msg, success = true) {
 }
 
 function redirectToIndex() {
-  try {
-    // Prefer origin-based absolute path when served over http(s)
-    if (window.location.origin && window.location.origin !== 'null') {
-      window.location.href = window.location.origin + '/index.html';
-      return;
-    }
-  } catch (e) {
-    // ignore
-  }
-  // Fallback: resolve by stripping /pages/... from current path
-  const href = window.location.href;
-  const base = href.replace(/\/pages\/.*$/, '');
-  window.location.href = (base.endsWith('/') ? base : base + '/') + 'index.html';
+  window.location.href = getSiteUrl('index.html');
 }
 
 // Signup
