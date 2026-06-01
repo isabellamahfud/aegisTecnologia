@@ -1,119 +1,119 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Downloads - Aegis Tecnologia</title>
-
-    <link rel="stylesheet" href="../css/downloads.css">
-
-</head>
-
-<body>
-  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;display:block;width:64px;height:64px;">
-    <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia" style="width:100%;height:100%;object-fit:contain;">
-  </a>
-
-
-    <section class="downloads">
-
-        <div class="downloads-header">
-
-            <h1>Central de Downloads</h1>
-
-            <p>
-                Faça o download dos sistemas, atualizações e ferramentas da Aegis Tecnologia.
-            </p>
-
-        </div>
-
-        <div class="downloads-container">
-
-            <!-- CARD -->
-
-            <div class="download-card">
-
-                <h2>Atualizações</h2>
-
-                <a href=" https://drive.google.com/drive/folders/0B49nyG8mz0bSNXgtZDJhUjRabVE?resourcekey=0-6e4PSoSOaY-G3GaAODuhdw&usp=sharing">
-                   Acessar Drive de Atualizações
-                </a>
-
-            </div>
-
-            <!-- CARD -->
-
-            <div class="download-card">
-
-                <h2>Outros</h2>
-
-
-                <a href="https://www.aegistecnologia.com/suporte/downloads/outros-downloads">
-                    Acessar Drive de Outros Downloads
-                </a>
-
-            </div>
-
-            <!-- CARD -->
-
-            <div class="download-card">
-
-                <h2>Documentações</h2>
-
-            
-                <a href="https://www.aegistecnologia.com/suporte/downloads/documentacoes">
-                    Acessar Drive de Documentações
-                </a>
-
-            </div>
-
-            <!-- CARD -->
-
-            <div class="download-card">
-
-                <h2>Programas Utilitários</h2>
-
-
-                <a href="https://www.aegistecnologia.com/suporte/downloads/programas-utilit%C3%A1rios">
-                    Acessar Drive de Programas Utilitários
-                </a>
-
-            </div>
-    <div class="download-card">
-
-                <h2>Treinamentos</h2>
-
-
-                <a href="https://www.aegistecnologia.com/suporte/downloads/treinamentos">
-                    Acessar Drive de Treinamentos
-                </a>
-
-            </div>
-        </div>
-
-    </section>
-
-    <script src="../js/header.js"></script>
-    
-    <script type="module">
-        import { requireDownloadAccess } from '../js/firebase-auth.js';
-
-        (async () => {
-            try {
-                const proceed = await requireDownloadAccess();
-                if (!proceed) {
-                    document.body.style.display = 'none';
-                }
-            } catch (error) {
-                console.error('Erro ao verificar acesso:', error);
-            }
-        })();
-    </script>
-</body>
-
-</html>
-
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Downloads - Aegis Tecnologia</title>
+
+    <link rel="stylesheet" href="../css/downloads.css">
+
+</head>
+
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;display:block;width:100px;height:100px;">
+    <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia" style="width:100%;height:100%;object-fit:contain;">
+  </a>
+
+
+    <section class="downloads">
+
+        <div class="downloads-header">
+
+            <h1>Central de Downloads</h1>
+
+            <p>
+                Faça o download dos sistemas, atualizações e ferramentas da Aegis Tecnologia.
+            </p>
+
+        </div>
+
+        <div class="downloads-container">
+
+            <!-- CARD -->
+
+            <div class="download-card">
+
+                <h2>Atualizações</h2>
+
+                <a href=" https://drive.google.com/drive/folders/0B49nyG8mz0bSNXgtZDJhUjRabVE?resourcekey=0-6e4PSoSOaY-G3GaAODuhdw&usp=sharing">
+                   Acessar Drive de Atualizações
+                </a>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="download-card">
+
+                <h2>Outros</h2>
+
+
+                <a href="https://www.aegistecnologia.com/suporte/downloads/outros-downloads">
+                    Acessar Drive de Outros Downloads
+                </a>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="download-card">
+
+                <h2>Documentações</h2>
+
+            
+                <a href="https://www.aegistecnologia.com/suporte/downloads/documentacoes">
+                    Acessar Drive de Documentações
+                </a>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="download-card">
+
+                <h2>Programas Utilitários</h2>
+
+
+                <a href="https://www.aegistecnologia.com/suporte/downloads/programas-utilit%C3%A1rios">
+                    Acessar Drive de Programas Utilitários
+                </a>
+
+            </div>
+    <div class="download-card">
+
+                <h2>Treinamentos</h2>
+
+
+                <a href="https://www.aegistecnologia.com/suporte/downloads/treinamentos">
+                    Acessar Drive de Treinamentos
+                </a>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script src="../js/header.js"></script>
+    
+    <script type="module">
+        import { requireDownloadAccess } from '../js/firebase-auth.js';
+
+        (async () => {
+            try {
+                const proceed = await requireDownloadAccess();
+                if (!proceed) {
+                    document.body.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erro ao verificar acesso:', error);
+            }
+        })();
+    </script>
+</body>
+
+</html>
+
