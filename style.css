@@ -207,12 +207,9 @@ a[href$="index.html"] img,
     display: block;
 }
 
-/* Back-to-home fixed logo used in pages/*.html */
+/* Back-to-home container (image will be fixed on mobile only) */
 .back-home{
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    z-index: 9999;
+    position: static;
     display: block;
     width: 100px;
     height: 100px;
@@ -405,30 +402,32 @@ a[href$="index.html"] img,
         padding: 12px 16px;
     }
 
-    /* Ícone fixo no canto superior esquerdo, menor e sem sobreposição agressiva */
+    /* Container stays in flow; only the image is fixed in the viewport */
     .back-home{
-        position: fixed !important;
-        top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
-        left: 10px !important;
-        width: 48px;
-        height: 48px;
-        z-index: 10001;
-        border-radius: 8px;
-        background: rgba(255,255,255,0.02);
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 0 !important;
         display: block;
-        padding: 6px;
-        box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
-        transition: none !important;
-        opacity: 1 !important;
-        z-index: 10010;
-        -webkit-tap-highlight-color: transparent;
     }
 
     .back-home img{
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
+        position: fixed !important;
+        top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+        left: 10px !important;
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 8px !important;
+        background: rgba(5,8,22,0.95) !important;
+        padding: 6px !important;
+        box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
+        transition: none !important;
+        opacity: 1 !important;
+        z-index: 10010 !important;
+        -webkit-tap-highlight-color: transparent !important;
+        object-fit: contain !important;
+        display: block !important;
+        pointer-events: auto !important;
     }
 
     /* Evita logos duplicados: esconder logo do header em mobile (usa o back-home fixo) */
@@ -861,7 +860,7 @@ max-width: 100%;
     .logo img{ width: 40px; }
     a[href$="index.html"] img{ width: 40px; }
     /* garantir back-home fixo, opaco e do tamanho desejado */
-    .back-home{ width: 48px; height: 48px; opacity: 1 !important; background: rgba(5,8,22,0.95); z-index: 10010; }
+    .back-home{ width: auto; height: auto; }
     .mobile-toggle{ display: flex; }
     nav{ display: none; }
     header.mobile-open nav{
