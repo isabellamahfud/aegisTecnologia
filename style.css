@@ -407,9 +407,9 @@ a[href$="index.html"] img,
 
     /* Ícone fixo no canto superior esquerdo, menor e sem sobreposição agressiva */
     .back-home{
-        position: fixed;
-        top: 10px;
-        left: 10px;
+        position: fixed !important;
+        top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+        left: 10px !important;
         width: 48px;
         height: 48px;
         z-index: 10001;
@@ -417,8 +417,8 @@ a[href$="index.html"] img,
         background: rgba(255,255,255,0.02);
         display: block;
         padding: 6px;
-        box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
+        transition: none !important;
         opacity: 1 !important;
         z-index: 10010;
         -webkit-tap-highlight-color: transparent;
@@ -440,8 +440,8 @@ a[href$="index.html"] img,
     /* aumentar área de toque sem crescer visualmente */
     .back-home:active,
     .back-home:focus{
-        transform: translateY(1px) scale(0.995);
-        box-shadow: 0 4px 12px rgba(2,6,23,0.5);
+        transform: none !important;
+        box-shadow: 0 4px 12px rgba(2,6,23,0.5) !important;
         outline: none;
     }
 }
