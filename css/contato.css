@@ -25,9 +25,7 @@ header{
 
     padding: 20px;
 
-    background: rgba(5, 8, 22, 0.9);
-
-    backdrop-filter: blur(10px);
+    background: rgba(5, 8, 22, 0.95);
 
     text-align: center;
 
@@ -38,6 +36,16 @@ header{
     font-size: 38px;
 
     color: white;
+}
+
+/* Deixar o título parado no topo e sem desfoque */
+.logo-topo{
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10011;
+    margin: 0;
 }
 
 .mapa-contato{
