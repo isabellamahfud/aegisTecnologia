@@ -58,33 +58,48 @@
   });
 })();
 
-// Injeta CSS para garantir que a imagem fique fixa em todas as páginas
+// Injeta CSS para garantir que a imagem apareça apenas no topo e suma ao rolar
 (function(){
   if (typeof document === 'undefined') return;
   if (document.getElementById('back-home-styles')) return;
   const css = `
-    .back-home{ position: static !important; }
-    .back-home img{
+    .back-home{
       position: fixed !important;
-      top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+      top: calc(env(safe-area-inset-top, 10px)) !important;
       left: 10px !important;
+      z-index: 10010 !important;
+      opacity: 0.75 !important;
+      transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
+    .back-home.hidden{
+      opacity: 0 !important;
+      transform: translateY(-10px) !important;
+      pointer-events: none !important;
+    }
+    .back-home img{
       width: 48px !important;
       height: 48px !important;
-      border-radius: 8px !important;
-      background: rgba(5,8,22,0.95) !important;
-      padding: 6px !important;
-      box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
-      transition: none !important;
-      opacity: 1 !important;
-      z-index: 10010 !important;
-      -webkit-tap-highlight-color: transparent !important;
       object-fit: contain !important;
       display: block !important;
-      pointer-events: auto !important;
     }
   `;
   const s = document.createElement('style');
   s.id = 'back-home-styles';
   s.appendChild(document.createTextNode(css));
   document.head.appendChild(s);
+})();
+
+(function(){
+  if (typeof window === 'undefined') return;
+  let lastScroll = window.scrollY;
+  const back = document.querySelector('.back-home');
+  if (!back) return;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20 && !back.classList.contains('hidden')) {
+      back.classList.add('hidden');
+    } else if (window.scrollY <= 20 && back.classList.contains('hidden')) {
+      back.classList.remove('hidden');
+    }
+    lastScroll = window.scrollY;
+  }, { passive: true });
 })();

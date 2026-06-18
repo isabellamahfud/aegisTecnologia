@@ -207,32 +207,25 @@ a[href$="index.html"] img,
     display: block;
 }
 
-/* Back-to-home container (image will be fixed in the viewport) */
+/* Back-to-home logo at the top of the page, visible and translucent */
 .back-home{
-    position: static;
-    display: block;
-    width: 100px;
-    height: 100px;
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 10px));
+    left: 10px;
+    z-index: 10010;
+    opacity: 0.75;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
-
-/* Fixed image: apply to all viewports so only the image stays fixed in the viewport */
+.back-home.hidden{
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
 .back-home img{
-    position: fixed !important;
-    top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
-    left: 10px !important;
-    width: 48px !important;
-    height: 48px !important;
-    border-radius: 8px !important;
-    background: rgba(5,8,22,0.95) !important;
-    padding: 6px !important;
-    box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
-    transition: none !important;
-    opacity: 1 !important;
-    z-index: 10010 !important;
-    -webkit-tap-highlight-color: transparent !important;
-    object-fit: contain !important;
-    display: block !important;
-    pointer-events: auto !important;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
 }
 .btn-header{
     text-decoration: none;
@@ -421,9 +414,9 @@ a[href$="index.html"] img,
         padding: 12px 16px;
     }
 
-    /* Keep the container in flow on small screens; image already fixed globally */
+    /* Keep the back-home fixed on small screens too */
     .back-home{
-        position: static !important;
+        position: fixed !important;
         width: auto;
         height: auto;
         padding: 0;
