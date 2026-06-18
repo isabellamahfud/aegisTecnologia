@@ -418,7 +418,9 @@ a[href$="index.html"] img,
         display: block;
         padding: 6px;
         box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-        transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        opacity: 1 !important;
+        z-index: 10010;
         -webkit-tap-highlight-color: transparent;
     }
 
@@ -858,7 +860,8 @@ max-width: 100%;
     header{ padding: 12px 18px; }
     .logo img{ width: 40px; }
     a[href$="index.html"] img{ width: 40px; }
-    .back-home{ width: 40px; height: 40px; }
+    /* garantir back-home fixo, opaco e do tamanho desejado */
+    .back-home{ width: 48px; height: 48px; opacity: 1 !important; background: rgba(5,8,22,0.95); z-index: 10010; }
     .mobile-toggle{ display: flex; }
     nav{ display: none; }
     header.mobile-open nav{
