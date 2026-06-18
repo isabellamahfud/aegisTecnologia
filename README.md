@@ -84,8 +84,10 @@ Suporte
 
 Site institucional com visual moderno, cores profissionais e foco em experiência do usuário.
 
-<h2>Como acessar?</h2>
-Para acessar o projeto acesse o link: https://aegistecnologia.netlify.app/
+
+→ Acesse o site em:
+
+https://aegistecnologia.com/
 
 
 → Desenvolvimento
