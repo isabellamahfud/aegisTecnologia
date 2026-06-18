@@ -93,13 +93,16 @@
   if (typeof window === 'undefined') return;
   let lastScroll = window.scrollY;
   const back = document.querySelector('.back-home');
-  if (!back) return;
+  const logo = document.querySelector('.logo-topo');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 20 && !back.classList.contains('hidden')) {
-      back.classList.add('hidden');
-    } else if (window.scrollY <= 20 && back.classList.contains('hidden')) {
-      back.classList.remove('hidden');
+    const sc = window.scrollY || 0;
+    if (sc > 20) {
+      if (back && !back.classList.contains('hidden')) back.classList.add('hidden');
+      if (logo && !logo.classList.contains('hidden')) logo.classList.add('hidden');
+    } else {
+      if (back && back.classList.contains('hidden')) back.classList.remove('hidden');
+      if (logo && logo.classList.contains('hidden')) logo.classList.remove('hidden');
     }
-    lastScroll = window.scrollY;
+    lastScroll = sc;
   }, { passive: true });
 })();
