@@ -1,141 +1,556 @@
-﻿<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NF-e</title>
-<link rel="stylesheet" href="../css/nfe.css">
-</head>
-<body>
-  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;display:block;width:100px;height:100px;">
-    <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia" style="width:100%;height:100%;object-fit:contain;">
-  </a>
-
-
-<section class="nfe-page">
-
-    <div class="nfe-container">
-
-       
-
-        <span>
-            NOTA FISCAL ELETR�NICA
-        </span>
-
-        <h1>
-            Emiss�o de Nota Fiscal Eletr�nica: NF-e
-        </h1>
-
-        <p>
-            Nossos sistemas foram planejados para conter
-            todas as informa��es legais que podem ser exigidas
-            pelo governo durante a emiss�o das Notas Fiscais.
-        </p>
-
-        <p>
-            Com nossos sistemas, voc� fatura seus produtos
-            e servi�os com facilidade, agilidade e dentro das leis,
-            destacando todos os impostos necess�rios
-            e cumprindo as obriga��es acess�rias.
-        </p>
-
-        <!-- BENEF�CIOS -->
-
-        <div class="nfe-grid">
-
-            <div class="nfe-card">
-                 Emiss�o r�pida e simplificada
-            </div>
-
-            <div class="nfe-card">
-                 Destaque autom�tico de impostos
-            </div>
-
-            <div class="nfe-card">
-                 Conformidade com a legisla��o
-            </div>
-
-            <div class="nfe-card">
-                 Atualiza��es sem custo
-            </div>
-
-            <div class="nfe-card">
-                ? Integra��o com financeiro e estoque
-            </div>
-
-            <div class="nfe-card">
-                 Distribui��o autom�tica de XML
-            </div>
-
-            <div class="nfe-card">
-                 Envio de DANFE por e-mail
-            </div>
-
-            <div class="nfe-card">
-                 Impress�o automatizada de DANFE
-            </div>
-
-            <div class="nfe-card">
-                 Carta de Corre��o Eletr�nica
-            </div>
-
-            <div class="nfe-card">
-                 Compat�vel com certificado A1 e A3
-            </div>
-
-        </div>
-
-        <p>
-            Temos uma equipe sempre acompanhando a legisla��o
-            para adequar o sistema �s novas exig�ncias legais.
-            Al�m disso, todas as atualiza��es s�o realizadas sem custo.
-        </p>
-
-        <p>
-            A plataforma de NF-e conta com um processo
-            de emiss�o de baixo retrabalho, integra��o
-            com m�dulos financeiros e de estoque,
-            al�m do envio automatizado de XML,
-            DANFE e t�tulos financeiros por e-mail.
-        </p>
-
-        <p>
-            O processo de emiss�o foi planejado
-            para reduzir ao m�ximo o trabalho do usu�rio,
-            diminuindo assim as possibilidades de erro.
-            E caso algum erro aconte�a,
-            o sistema conta com Carta de Corre��o Eletr�nica.
-        </p>
-
-        <p>
-            O sistema pode ser utilizado com certificados
-            digitais A1 ou A3, de acordo com sua prefer�ncia.
-        </p>
-
-        <!-- CTA -->
-
-        <div class="cta-box">
-
-            <h3>
-                D�vidas?
-            </h3>
-
-            <p>
-                Entre em contato conosco e saiba mais
-                sobre nossas solu��es fiscais inteligentes.
-            </p>
-
-            <a href="contato.html">
-                CONTATO
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-    <script type="module" src="../js/supabase-auth.js"></script>
-    <script src="../js/header.js"></script>
-</body>
-</html>
-
+﻿<!DOCTYPE html>
+
+
+
+<html lang="pt-BR">
+
+
+
+<head>
+
+
+
+<meta charset="UTF-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<title>NF-e</title>
+
+
+
+<link rel="stylesheet" href="../css/nfe.css">
+
+
+
+</head>
+
+
+
+<body>
+
+
+    <a href="../index.html" class="back-home">
+        <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia">
+    </a>
+
+
+
+
+
+
+
+
+
+
+<section class="nfe-page">
+
+
+
+
+
+
+
+    <div class="nfe-container">
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+        <span>
+
+
+
+            NOTA FISCAL ELETR�NICA
+
+
+
+        </span>
+
+
+
+
+
+
+
+        <h1>
+
+
+
+            Emiss�o de Nota Fiscal Eletr�nica: NF-e
+
+
+
+        </h1>
+
+
+
+
+
+
+
+        <p>
+
+
+
+            Nossos sistemas foram planejados para conter
+
+
+
+            todas as informa��es legais que podem ser exigidas
+
+
+
+            pelo governo durante a emiss�o das Notas Fiscais.
+
+
+
+        </p>
+
+
+
+
+
+
+
+        <p>
+
+
+
+            Com nossos sistemas, voc� fatura seus produtos
+
+
+
+            e servi�os com facilidade, agilidade e dentro das leis,
+
+
+
+            destacando todos os impostos necess�rios
+
+
+
+            e cumprindo as obriga��es acess�rias.
+
+
+
+        </p>
+
+
+
+
+
+
+
+        <!-- BENEF�CIOS -->
+
+
+
+
+
+
+
+        <div class="nfe-grid">
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Emiss�o r�pida e simplificada
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Destaque autom�tico de impostos
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Conformidade com a legisla��o
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Atualiza��es sem custo
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                ? Integra��o com financeiro e estoque
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Distribui��o autom�tica de XML
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Envio de DANFE por e-mail
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Impress�o automatizada de DANFE
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Carta de Corre��o Eletr�nica
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="nfe-card">
+
+
+
+                 Compat�vel com certificado A1 e A3
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <p>
+
+
+
+            Temos uma equipe sempre acompanhando a legisla��o
+
+
+
+            para adequar o sistema �s novas exig�ncias legais.
+
+
+
+            Al�m disso, todas as atualiza��es s�o realizadas sem custo.
+
+
+
+        </p>
+
+
+
+
+
+
+
+        <p>
+
+
+
+            A plataforma de NF-e conta com um processo
+
+
+
+            de emiss�o de baixo retrabalho, integra��o
+
+
+
+            com m�dulos financeiros e de estoque,
+
+
+
+            al�m do envio automatizado de XML,
+
+
+
+            DANFE e t�tulos financeiros por e-mail.
+
+
+
+        </p>
+
+
+
+
+
+
+
+        <p>
+
+
+
+            O processo de emiss�o foi planejado
+
+
+
+            para reduzir ao m�ximo o trabalho do usu�rio,
+
+
+
+            diminuindo assim as possibilidades de erro.
+
+
+
+            E caso algum erro aconte�a,
+
+
+
+            o sistema conta com Carta de Corre��o Eletr�nica.
+
+
+
+        </p>
+
+
+
+
+
+
+
+        <p>
+
+
+
+            O sistema pode ser utilizado com certificados
+
+
+
+            digitais A1 ou A3, de acordo com sua prefer�ncia.
+
+
+
+        </p>
+
+
+
+
+
+
+
+        <!-- CTA -->
+
+
+
+
+
+
+
+        <div class="cta-box">
+
+
+
+
+
+
+
+            <h3>
+
+
+
+                D�vidas?
+
+
+
+            </h3>
+
+
+
+
+
+
+
+            <p>
+
+
+
+                Entre em contato conosco e saiba mais
+
+
+
+                sobre nossas solu��es fiscais inteligentes.
+
+
+
+            </p>
+
+
+
+
+
+
+
+            <a href="contato.html">
+
+
+
+                CONTATO
+
+
+
+            </a>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+</section>
+
+
+
+    <script type="module" src="../js/supabase-auth.js"></script>
+
+
+
+    <script src="../js/header.js"></script>
+
+
+
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+

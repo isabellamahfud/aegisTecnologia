@@ -192,9 +192,32 @@ nav a:hover{
     color: white;
 }
 img {
-    width: 150px;
+    max-width: 100%;
     height: auto;
+    display: inline-block;
 }
+
+/* Logo images that link back to the homepage (works for ../index.html, ./index.html, etc.) */
+a[href$="index.html"] img,
+.logo img {
+    width: 120px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Back-to-home fixed logo used in pages/*.html */
+.back-home{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+.back-home img{ width:100%; height:100%; object-fit:contain; display:block; }
 .btn-header{
     text-decoration: none;
 
@@ -788,6 +811,8 @@ max-width: 100%;
 @media (max-width: 900px){
     header{ padding: 12px 18px; }
     .logo img{ width: 40px; }
+    a[href$="index.html"] img{ width: 40px; }
+    .back-home{ width: 40px; height: 40px; }
     .mobile-toggle{ display: flex; }
     nav{ display: none; }
     header.mobile-open nav{

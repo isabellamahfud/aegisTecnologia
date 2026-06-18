@@ -1,142 +1,280 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Solicitações de Permissão</title>
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;padding:24px}
-    .req{border:1px solid #ddd;padding:12px;margin-bottom:8px}
-    button{margin-right:8px}
-  </style>
-</head>
-
-<body>
-  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;display:block;width:100px;height:100px;">
-    <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia" style="width:100%;height:100%;object-fit:contain;">
-  </a>
-
-  <h1>Solicitações de Permissão - Downloads</h1>
-  <p id="status">Carregando...</p>
-  <div id="list"></div>
-
-  <script type="module">
-    import { app } from '../js/firebase-config.js';
-    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
-    import {
-      getFirestore,
-      collection,
-      query,
-      where,
-      getDocs,
-      updateDoc,
-      doc,
-      arrayUnion,
-      setDoc,
-      serverTimestamp
-    } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
-
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // Substitua pelos UIDs reais dos proprietários
-    const OWNERS = [
-      'OWNER_UID_1',
-      'OutroUIDdoProprietario'
-    ];
-
-    function getSiteUrl(relativePath) {
-      const path = window.location.pathname;
-      const base = path.replace(/\/pages\/.*$/, '');
-      const b = base === '' ? '/' : base;
-      return window.location.origin + b.replace(/\/$/, '') + '/' + relativePath.replace(/^\//, '');
-    }
-
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        alert('Faça login como proprietário para acessar esta página.');
-        window.location.href = getSiteUrl('pages/login.html');
-        return;
-      }
-      if (!OWNERS.includes(user.uid)) {
-        alert('Acesso negado: usuário não é proprietário.');
-        window.location.href = getSiteUrl('index.html');
-        return;
-      }
-      document.getElementById('status').textContent = 'Autenticado como ' + (user.displayName || user.email);
-      await renderList();
-    });
-
-    async function renderList() {
-      const listEl = document.getElementById('list');
-      listEl.innerHTML = '';
-      document.getElementById('status').textContent = 'Buscando solicitações pendentes...';
-
-      const q = query(collection(db, 'permission_requests'), where('status', '==', 'pending'));
-      const snap = await getDocs(q);
-      if (snap.empty) {
-        document.getElementById('status').textContent = 'Nenhuma solicitação pendente.';
-        return;
-      }
-      document.getElementById('status').textContent = 'Solicitações pendentes:';
-
-      snap.forEach((docSnap) => {
-        const data = docSnap.data();
-        const id = docSnap.id;
-        const el = document.createElement('div');
-        el.className = 'req';
-        el.innerHTML = `
-          <strong>${data.displayName || data.email || data.uid}</strong>
-          <div>UID: ${data.uid}</div>
-          <div>Email: ${data.email || '—'}</div>
-          <div>Solicitado em: ${data.createdAt ? data.createdAt.toDate() : '—'}</div>
-        `;
-
-        const approve = document.createElement('button');
-        approve.textContent = 'Aprovar';
-        approve.addEventListener('click', async () => {
-          approve.disabled = true;
-          try {
-            const permRef = doc(db, 'permissions', 'downloads');
-            // tenta atualizar com arrayUnion; se não existir, cria
-            try {
-              await updateDoc(permRef, { allowedUids: arrayUnion(data.uid) });
-            } catch (e) {
-              // se update falhar (doc não existe), cria com setDoc
-              await setDoc(permRef, { allowedUids: [data.uid] });
-            }
-            await updateDoc(doc(db, 'permission_requests', id), { status: 'approved', handledAt: serverTimestamp() });
-            el.style.opacity = '0.5';
-            el.insertAdjacentHTML('beforeend', '<div style="color:green">Aprovado</div>');
-          } catch (err) {
-            console.error(err);
-            alert('Erro ao aprovar. Veja o console.');
-            approve.disabled = false;
-          }
-        });
-
-        const reject = document.createElement('button');
-        reject.textContent = 'Rejeitar';
-        reject.addEventListener('click', async () => {
-          reject.disabled = true;
-          try {
-            await updateDoc(doc(db, 'permission_requests', id), { status: 'rejected', handledAt: serverTimestamp() });
-            el.style.opacity = '0.5';
-            el.insertAdjacentHTML('beforeend', '<div style="color:orange">Rejeitado</div>');
-          } catch (err) {
-            console.error(err);
-            alert('Erro ao rejeitar. Veja o console.');
-            reject.disabled = false;
-          }
-        });
-
-        el.appendChild(approve);
-        el.appendChild(reject);
-        listEl.appendChild(el);
-      });
-    }
-  </script>
-</body>
-
-</html>
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Solicitações de Permissão</title>
+
+  <style>
+
+    body{font-family:Arial,Helvetica,sans-serif;padding:24px}
+
+    .req{border:1px solid #ddd;padding:12px;margin-bottom:8px}
+
+    button{margin-right:8px}
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+  <a href="../index.html" class="back-home">
+    <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia">
+  </a>
+
+  <h1>Solicitações de Permissão - Downloads</h1>
+
+  <p id="status">Carregando...</p>
+
+  <div id="list"></div>
+
+
+
+  <script type="module">
+
+    import { app } from '../js/firebase-config.js';
+
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+
+    import {
+
+      getFirestore,
+
+      collection,
+
+      query,
+
+      where,
+
+      getDocs,
+
+      updateDoc,
+
+      doc,
+
+      arrayUnion,
+
+      setDoc,
+
+      serverTimestamp
+
+    } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
+
+
+
+    const auth = getAuth(app);
+
+    const db = getFirestore(app);
+
+
+
+    // Substitua pelos UIDs reais dos proprietários
+
+    const OWNERS = [
+
+      'OWNER_UID_1',
+
+      'OutroUIDdoProprietario'
+
+    ];
+
+
+
+    function getSiteUrl(relativePath) {
+
+      const path = window.location.pathname;
+
+      const base = path.replace(/\/pages\/.*$/, '');
+
+      const b = base === '' ? '/' : base;
+
+      return window.location.origin + b.replace(/\/$/, '') + '/' + relativePath.replace(/^\//, '');
+
+    }
+
+
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+
+        alert('Faça login como proprietário para acessar esta página.');
+
+        window.location.href = getSiteUrl('pages/login.html');
+
+        return;
+
+      }
+
+      if (!OWNERS.includes(user.uid)) {
+
+        alert('Acesso negado: usuário não é proprietário.');
+
+        window.location.href = getSiteUrl('index.html');
+
+        return;
+
+      }
+
+      document.getElementById('status').textContent = 'Autenticado como ' + (user.displayName || user.email);
+
+      await renderList();
+
+    });
+
+
+
+    async function renderList() {
+
+      const listEl = document.getElementById('list');
+
+      listEl.innerHTML = '';
+
+      document.getElementById('status').textContent = 'Buscando solicitações pendentes...';
+
+
+
+      const q = query(collection(db, 'permission_requests'), where('status', '==', 'pending'));
+
+      const snap = await getDocs(q);
+
+      if (snap.empty) {
+
+        document.getElementById('status').textContent = 'Nenhuma solicitação pendente.';
+
+        return;
+
+      }
+
+      document.getElementById('status').textContent = 'Solicitações pendentes:';
+
+
+
+      snap.forEach((docSnap) => {
+
+        const data = docSnap.data();
+
+        const id = docSnap.id;
+
+        const el = document.createElement('div');
+
+        el.className = 'req';
+
+        el.innerHTML = `
+
+          <strong>${data.displayName || data.email || data.uid}</strong>
+
+          <div>UID: ${data.uid}</div>
+
+          <div>Email: ${data.email || '—'}</div>
+
+          <div>Solicitado em: ${data.createdAt ? data.createdAt.toDate() : '—'}</div>
+
+        `;
+
+
+
+        const approve = document.createElement('button');
+
+        approve.textContent = 'Aprovar';
+
+        approve.addEventListener('click', async () => {
+
+          approve.disabled = true;
+
+          try {
+
+            const permRef = doc(db, 'permissions', 'downloads');
+
+            // tenta atualizar com arrayUnion; se não existir, cria
+
+            try {
+
+              await updateDoc(permRef, { allowedUids: arrayUnion(data.uid) });
+
+            } catch (e) {
+
+              // se update falhar (doc não existe), cria com setDoc
+
+              await setDoc(permRef, { allowedUids: [data.uid] });
+
+            }
+
+            await updateDoc(doc(db, 'permission_requests', id), { status: 'approved', handledAt: serverTimestamp() });
+
+            el.style.opacity = '0.5';
+
+            el.insertAdjacentHTML('beforeend', '<div style="color:green">Aprovado</div>');
+
+          } catch (err) {
+
+            console.error(err);
+
+            alert('Erro ao aprovar. Veja o console.');
+
+            approve.disabled = false;
+
+          }
+
+        });
+
+
+
+        const reject = document.createElement('button');
+
+        reject.textContent = 'Rejeitar';
+
+        reject.addEventListener('click', async () => {
+
+          reject.disabled = true;
+
+          try {
+
+            await updateDoc(doc(db, 'permission_requests', id), { status: 'rejected', handledAt: serverTimestamp() });
+
+            el.style.opacity = '0.5';
+
+            el.insertAdjacentHTML('beforeend', '<div style="color:orange">Rejeitado</div>');
+
+          } catch (err) {
+
+            console.error(err);
+
+            alert('Erro ao rejeitar. Veja o console.');
+
+            reject.disabled = false;
+
+          }
+
+        });
+
+
+
+        el.appendChild(approve);
+
+        el.appendChild(reject);
+
+        listEl.appendChild(el);
+
+      });
+
+    }
+
+  </script>
+
+</body>
+
+
+
+</html>
+

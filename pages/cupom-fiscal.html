@@ -1,113 +1,335 @@
-﻿<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cupom Fiscal TEF ECF</title>
-  <link rel="stylesheet" href="../css/cupom-fiscal.css">
-</head>
-<body>
-  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:9999;display:block;width:100px;height:100px;">
-    <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia" style="width:100%;height:100%;object-fit:contain;">
-  </a>
-
-<section class="cupom-fiscal">
-
-    <div class="cupom-container">
-
-
-        <span>
-            AUTOMAÇÃO COMERCIAL
-        </span>
-
-        <h1>
-            Emissor de Cupom Fiscal TEF ECF
-        </h1>
-
-        <p>
-            Se você precisa de um ponto de venda PAF/ECF homologado com TEF,
-            o ICAC é a solução.
-        </p>
-
-        <p>
-            Muito mais que um ponto de venda, este sistema possui diversas
-            funcionalidades que podem ser ativadas ou desativadas
-            de acordo com o uso do cliente.
-        </p>
-
-        <!-- funcionalidades -->
-
-        <div class="funcionalidades">
-
-            <div class="func-item"> ✔ Tabelas de preços</div>
-
-            <div class="func-item"> ✔ Descontos por itens</div>
-
-            <div class="func-item"> ✔ Preços negociáveis</div>
-
-            <div class="func-item"> ✔ Descontos por condição de venda</div>
-
-            <div class="func-item"> ✔ Acréscimo por condição de venda</div>
-
-            <div class="func-item"> ✔ Identificação de vendedor por item</div>
-
-            <div class="func-item"> ✔ Bloqueio/desbloqueio de cliente</div>
-
-            <div class="func-item"> ✔ Senhas de supervisor e controle gerencial</div>
-
-            <div class="func-item"> ✔ Controle de condicional</div>
-
-            <div class="func-item"> ✔ Extratos de clientes</div>
-
-            <div class="func-item"> ✔ Controle e recebimento de prestações</div>
-
-            <div class="func-item"> ✔ Pré-vendas</div>
-
-            <div class="func-item"> ✔ Orçamentos</div>
-
-        </div>
-
-        <p>
-            Integrado ao Vértice BMS ou ao iERP permite total controle
-            de estoque, vendas, financeiro, crediário/cobrança
-            e pós-vendas da empresa.
-        </p>
-
-        <p>
-            O sistema ainda gera todas as informações relativas ao SPED,
-            facilitando o cumprimento das exigências legais solicitadas pelo Fisco.
-        </p>
-
-        <p>
-            Também é possível converter orçamentos e/ou pedidos de venda
-            em cupons fiscais no momento da venda, podendo incluir
-            ou remover itens conforme a necessidade do cliente.
-        </p>
-
-        <!-- CTA -->
-
-        <div class="cta-box">
-
-            <h3>
-                Dúvidas?
-            </h3>
-
-            <p>
-                Entre em contato conosco e saiba mais sobre nossas soluções.
-            </p>
-
-            <a href="contato.html">
-                CONTATO
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <script type="module" src="../js/supabase-auth.js"></script>
-    <script src="../js/header.js"></script>
-</body>
-</html>
-
+﻿<!DOCTYPE html>
+
+
+<html lang="pt-BR">
+
+
+<head>
+
+
+  <meta charset="UTF-8">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Cupom Fiscal TEF ECF</title>
+
+
+  <link rel="stylesheet" href="../css/cupom-fiscal.css">
+
+
+</head>
+
+
+<body>
+
+
+    <a href="../index.html" class="back-home">
+        <img src="../img/aegisTecnologiaLogo.png" alt="Aegis Tecnologia">
+    </a>
+
+
+
+
+
+<section class="cupom-fiscal">
+
+
+
+
+
+    <div class="cupom-container">
+
+
+
+
+
+
+
+
+        <span>
+
+
+            AUTOMAÇÃO COMERCIAL
+
+
+        </span>
+
+
+
+
+
+        <h1>
+
+
+            Emissor de Cupom Fiscal TEF ECF
+
+
+        </h1>
+
+
+
+
+
+        <p>
+
+
+            Se você precisa de um ponto de venda PAF/ECF homologado com TEF,
+
+
+            o ICAC é a solução.
+
+
+        </p>
+
+
+
+
+
+        <p>
+
+
+            Muito mais que um ponto de venda, este sistema possui diversas
+
+
+            funcionalidades que podem ser ativadas ou desativadas
+
+
+            de acordo com o uso do cliente.
+
+
+        </p>
+
+
+
+
+
+        <!-- funcionalidades -->
+
+
+
+
+
+        <div class="funcionalidades">
+
+
+
+
+
+            <div class="func-item"> ✔ Tabelas de preços</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Descontos por itens</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Preços negociáveis</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Descontos por condição de venda</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Acréscimo por condição de venda</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Identificação de vendedor por item</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Bloqueio/desbloqueio de cliente</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Senhas de supervisor e controle gerencial</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Controle de condicional</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Extratos de clientes</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Controle e recebimento de prestações</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Pré-vendas</div>
+
+
+
+
+
+            <div class="func-item"> ✔ Orçamentos</div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+        <p>
+
+
+            Integrado ao Vértice BMS ou ao iERP permite total controle
+
+
+            de estoque, vendas, financeiro, crediário/cobrança
+
+
+            e pós-vendas da empresa.
+
+
+        </p>
+
+
+
+
+
+        <p>
+
+
+            O sistema ainda gera todas as informações relativas ao SPED,
+
+
+            facilitando o cumprimento das exigências legais solicitadas pelo Fisco.
+
+
+        </p>
+
+
+
+
+
+        <p>
+
+
+            Também é possível converter orçamentos e/ou pedidos de venda
+
+
+            em cupons fiscais no momento da venda, podendo incluir
+
+
+            ou remover itens conforme a necessidade do cliente.
+
+
+        </p>
+
+
+
+
+
+        <!-- CTA -->
+
+
+
+
+
+        <div class="cta-box">
+
+
+
+
+
+            <h3>
+
+
+                Dúvidas?
+
+
+            </h3>
+
+
+
+
+
+            <p>
+
+
+                Entre em contato conosco e saiba mais sobre nossas soluções.
+
+
+            </p>
+
+
+
+
+
+            <a href="contato.html">
+
+
+                CONTATO
+
+
+            </a>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+</section>
+
+
+
+
+
+    <script type="module" src="../js/supabase-auth.js"></script>
+
+
+    <script src="../js/header.js"></script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+
