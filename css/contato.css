@@ -25,7 +25,7 @@ header{
 
     padding: 40px 20px 20px;
 
-    background: rgba(5, 8, 22, 0.95);
+    background: #050816;
 
     text-align: center;
 
@@ -38,10 +38,12 @@ header{
     margin: 0;
     max-width: calc(100% - 40px);
     line-height: 1.1;
+    position: relative;
+    z-index: 1001;
 }
 
 .mapa-contato{
-    padding: 220px 8% 40px;
+    padding: 260px 8% 40px;
 
     display: flex;
 
