@@ -16,7 +16,6 @@ body{
     font-family: 'Inter', sans-serif;
 }
 header{
-    position: fixed;
 
     top: 0;
     left: 0;
@@ -29,7 +28,7 @@ header{
     
     border: none;
     box-shadow: none;
-    backdrop-filter: none;
+  
 
     text-align: center;
 
