@@ -26,6 +26,10 @@ header{
     padding: 40px 20px 20px;
 
     background: #050816;
+    
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
 
     text-align: center;
 
@@ -150,8 +154,4 @@ header{
     font-weight: 600;
 
     transition: 0.3s;
-}
-
-.contato-box a:hover{
-    transform: translateY(-3px);
 }

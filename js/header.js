@@ -124,8 +124,8 @@
       pointer-events: none !important;
     }
     .back-home img{
-      width: 60px !important;
-      height: 60px !important;
+      width: 80px !important;
+      height: 80px !important;
       object-fit: contain !important;
       display: block !important;
     }
