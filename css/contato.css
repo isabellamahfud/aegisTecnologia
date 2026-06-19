@@ -23,7 +23,7 @@ header{
 
     width: 100%;
 
-    padding: 20px;
+    padding: 30px 20px 20px;
 
     background: rgba(5, 8, 22, 0.95);
 
@@ -33,30 +33,15 @@ header{
 }
 
 .logo-topo{
-    font-size: 38px;
-
+    font-size: 40px;
     color: white;
-}
-
-/* Deixar o título parado no topo e sem desfoque */
-.logo-topo{
-    position: fixed;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10011;
     margin: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.logo-topo.hidden{
-    opacity: 0;
-    transform: translateX(-50%) translateY(-8px);
-    pointer-events: none;
+    max-width: calc(100% - 40px);
+    line-height: 1.1;
 }
 
 .mapa-contato{
-    padding: 120px 8%;
+    padding: 160px 8% 40px;
 
     display: flex;
 
