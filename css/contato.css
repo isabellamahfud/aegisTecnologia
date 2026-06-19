@@ -23,7 +23,7 @@ header{
 
     width: 100%;
 
-    padding: 30px 20px 20px;
+    padding: 40px 20px 20px;
 
     background: rgba(5, 8, 22, 0.95);
 
@@ -41,7 +41,7 @@ header{
 }
 
 .mapa-contato{
-    padding: 160px 8% 40px;
+    padding: 220px 8% 40px;
 
     display: flex;
 
