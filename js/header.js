@@ -1,6 +1,53 @@
 // Mobile header toggle injected script
 (function(){
   const header = document.querySelector('header');
+  const backHome = document.querySelector('.back-home');
+  const headerLogo = document.querySelector('header .logo');
+  const mobileLogoElements = [backHome, headerLogo].filter(Boolean);
+
+  if (mobileLogoElements.length) {
+    const style = document.createElement('style');
+    style.textContent = `
+      .back-home {
+        display: block;
+      }
+      .back-home img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .back-home {
+          position: fixed !important;
+          top: 12px;
+          left: 12px;
+          width: 44px;
+          height: 44px;
+          z-index: 9999;
+          transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+        }
+        .back-home.hide-on-scroll,
+        header .logo.hide-on-scroll {
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-8px);
+          pointer-events: none;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const updateLogoHidden = () => {
+      const hide = window.matchMedia('(max-width: 900px)').matches && window.scrollY > 10;
+      mobileLogoElements.forEach((el) => el.classList.toggle('hide-on-scroll', hide));
+    };
+
+    updateLogoHidden();
+    window.addEventListener('scroll', updateLogoHidden, { passive: true });
+    window.addEventListener('resize', updateLogoHidden);
+  }
+
   if (!header) return;
 
   // Create toggle button
